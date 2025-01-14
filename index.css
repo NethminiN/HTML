@@ -52,6 +52,7 @@ body {
     height: auto;
     border-radius: 0%; /* Circular image */
     border: 2px solid #0a398a; /* Blue border */
+    box-shadow: 3px 3px 1px grey;
 }
 
 .sideBar .label {
