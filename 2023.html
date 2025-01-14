@@ -1,94 +1,62 @@
 <script>
 
+function getInputValues() {
+    const salary = parseFloat(document.getElementById('salary').value) || 0;
+    const additionalAllowance = parseFloat(document.getElementById('additionalAllowance').value) || 0;
+    const costOfLiving = parseFloat(document.getElementById('costOfLiving').value) || 0;
+    const loan = parseFloat(document.getElementById('loan').value) || 0;
 
-    function calcTotalEarning(){
-    
-        const salary = parseFloat(document.getElementById('salary').value) || 0; // Get Salary
-        const additionalAllowance = parseFloat(document.getElementById('additionalAllowance').value) || 0; // Get Additional Allowance
-        const costOfLiving = parseFloat(document.getElementById('costOfLiving').value) || 0; // Get Cost of Living
-    
-        const totalEarnings = salary + additionalAllowance + costOfLiving; // Calculate Total Earnings
-        document.getElementById('totalEarnings').value = totalEarnings.toFixed(2); // Display Total Earnings
-        return totalEarnings;
-    
-    
-            
-    /*	
-        * Read the salary, Additional Monthly Allowance and Cost of Living values.
-        * Add them to get the total earnings. 
-        * Show it in the correct box.	
-    */
-    
-    }
-    
-    function calcPayee(){
-        const totalEarnings = calcTotalEarning();
-        let tax = 0;
-    
-        if (totalEarnings <= 100000) {
-            tax = 0;
-        } else if (totalEarnings <= 200000) {
-            tax = (totalEarnings - 100000) * 0.06;
-        } else {
-            tax = (100000 * 0.06) + ((totalEarnings - 200000) * 0.12);
+    return { salary, additionalAllowance, costOfLiving, loan };
+}
+
+function calcTotalEarnings() {
+    const { salary, additionalAllowance, costOfLiving } = getInputValues();
+    const totalEarnings = salary + additionalAllowance + costOfLiving;
+    document.getElementById('totalEarnings').value = totalEarnings.toFixed(2);
+    return totalEarnings;
+}
+
+function calcPayeeTax() {
+    const totalEarnings = calcTotalEarnings();
+    let tax = 0;
+
+    if (totalEarnings > 100000) {
+        tax += Math.min(totalEarnings - 100000, 100000) * 0.06; // Tax on the second 100,000
+        if (totalEarnings > 200000) {
+            tax += (totalEarnings - 200000) * 0.12; // Tax on amounts above 200,000
         }
-    
-        document.getElementById('payeeTax').value = tax.toFixed(2); // Display the calculated tax
-        return tax;
-    
-    /*
-        * Tax Criteria
-            - First 100,000 : tax free
-            - Second 100,000 : 6%
-            - More than the second 100,000 : 12%
-        
-        * Show the tax in the correct box.
-    
-    */		
-    
     }
-    
-    function calcPF(){
-    
-        const totalEarnings = calcTotalEarning(); // **MISSING VARIABLE**
-        const pf = totalEarnings * 0.10; // Calculate PF
-        document.getElementById('pf').value = pf.toFixed(2); // Display PF
-        return pf;
-    
-    /*
-        * PF value = 10% of the total earnings
-        * Show it in the correct box.
-    
-    */	
-        
-    }
-    function calcTotalDeductions(){
-        
-        const loan = parseFloat(document.getElementById('loan').value) || 0; // Get Loan
-        const payeeTax = parseFloat(document.getElementById('payeeTax').value) || 0; // Get PAYE Tax
-        const pf = parseFloat(document.getElementById('pf').value) || 0; // Get PF
-    
-        const totalDeductions = loan + payeeTax + pf; // Calculate Total Deductions
-        document.getElementById('totalDeductions').value = totalDeductions.toFixed(2); // Display Total Deductions
-        return totalDeductions;
-    
-    
-    /*	
-        * Read the loan, PAYE tax and PF values.
-        * Add them to get the total deductions. 
-        * Show it in the correct box.	
-    */
-    
-        
-    }
-    
-    function calcNetSalary() {
-        const totalEarnings = calcTotalEarning(); // Correctly calls calcTotalEarning
-        const totalDeductions = calcTotalDeductions(); // Correctly calls calcTotalDeductions
-    
-        const netSalary = totalEarnings - totalDeductions; // Calculate Net Salary
-        document.getElementById('netSalary').value = netSalary.toFixed(2); // Display Net Salary
-        return netSalary;
-    }
+
+    document.getElementById('payeeTax').value = tax.toFixed(2);
+    return tax;
+}
+
+function calcPF() {
+    const totalEarnings = calcTotalEarnings();
+    const pf = totalEarnings * 0.10;
+    document.getElementById('pf').value = pf.toFixed(2);
+    return pf;
+}
+
+function calcTotalDeductions() {
+    const { loan } = getInputValues();
+    const payeeTax = parseFloat(document.getElementById('payeeTax').value) || 0;
+    const pf = parseFloat(document.getElementById('pf').value) || 0;
+
+    const totalDeductions = loan + payeeTax + pf;
+    document.getElementById('totalDeductions').value = totalDeductions.toFixed(2);
+    return totalDeductions;
+}
+
+function calcNetSalary() {
+    const totalEarnings = calcTotalEarnings();
+    const totalDeductions = calcTotalDeductions();
+
+    const netSalary = totalEarnings - totalDeductions;
+    document.getElementById('netSalary').value = netSalary.toFixed(2);
+    return netSalary;
+}
+</script>
+
     
     
