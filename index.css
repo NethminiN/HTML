@@ -1,0 +1,122 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #3b3b3b; /* Dark gray background */
+    color: #000; /* Black text color */
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #fff; /* White background for the page */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow effect */
+}
+
+/* Header Section */
+.headerBar {
+    background-color: #0a398a; /* Blue background */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.headerBar h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+.headerBar h2 {
+    margin: 5px 0 0;
+    font-size: 1.2em;
+    font-weight: normal;
+}
+
+/* Sidebar Styles */
+.sideBar {
+    background-color: #c7eaff; /* Light blue background */
+    padding: 20px;
+    width: 30%;
+    float: left;
+    box-sizing: border-box;
+}
+
+.sideBar .picBox {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sideBar .picBox img {
+    width: 100px;
+    height: auto;
+    border-radius: 0%; /* Circular image */
+    border: 2px solid #0a398a; /* Blue border */
+}
+
+.sideBar .label {
+    font-weight: bold;
+    margin: 10px 0 5px;
+}
+
+.sideBar .detail {
+    margin: 0 0 10px;
+    font-style: italic; /* Italicized details */
+}
+
+/* Main Content Section */
+.mainContent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.mainTextArea {
+    width: 68%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.mainTextArea .intro {
+    background-color: #e9e9ff; /* Light purple background */
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.mainTextArea h1 {
+    color: #0a398a; /* Blue headers */
+    margin-top: 0;
+    border-bottom: 2px solid #0a398a;
+    padding-bottom: 5px;
+}
+
+.mainTextArea h2 {
+    color: #333; /* Dark gray subheaders */
+    margin-top: 20px;
+}
+
+.mainTextArea p {
+    line-height: 1.5;
+    margin: 10px 0;
+}
+
+/* Footer Section */
+.footerBar {
+    text-align: center;
+    padding: 10px;
+    background-color: #333; /* Dark gray footer */
+    color: white;
+    font-size: 0.9em;
+    margin-top: 20px;
+    clear: both;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .sideBar, .mainTextArea {
+        width: 100%;
+        float: none;
+        margin-bottom: 20px;
+    }
+}

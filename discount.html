@@ -1,0 +1,139 @@
+<script>
+
+
+    function getUnitPrice(){
+            
+    /*	
+    
+    When the item is selected from the list, the unit price should be displayed automatically in the correct box. 
+    according to the following price list. 
+        Wireless Keyboard	: 4000.00 LKR
+        Wireless Mouse		: 3000.00 LKR
+        Headphone			: 1000.00 LKR
+        Web Camera			: 8000.00 LKR
+        Microphone			: 2500.00 LKR
+    
+        
+    */
+    
+        var item = document.getElementsByName("items")[0].value;
+    
+        if(item=="0"){
+            document.getElementsByName("unitprice")[0].value=4000;
+        } else if(item=="2"){
+            document.getElementsByName("unitprice")[0].value=1000;
+        } else if(item=="3"){
+            document.getElementsByName("unitprice")[0].value=8000;
+        } else if(item=="4"){
+            document.getElementsByName("unitprice")[0].value=2500;
+        } else if(item=="1"){
+            document.getElementsByName("unitprice")[0].value=3000;
+        }
+    
+    }
+    
+    function calcSubtotal(){
+        
+    /*
+    
+    When the quantity  is entered, the sub total should be displayed automatically in the correct box.
+    The inputs should be properly validated.
+    
+    */	
+    
+        function validatecalcSubtotal(quantity){
+            if(isNaN(quantity)){
+                alert("Quantity cannot be null");
+                return false;
+            } else if(quantity<=0){
+                alert("Please enter a valid quantity (>0)");
+                return false;
+            } else {
+                return true;
+            }
+        }
+    
+        var quantity = document.getElementsByName("quantity")[0].value; 
+        var unitPrice = document.getElementsByName("unitprice")[0].value;
+    
+        if (validatecalcSubtotal(quantity))
+        {
+        var subtot = quantity * unitPrice;
+        document.getElementsByName("subtotal")[0].value = subtot; 
+        }
+        
+    }
+    
+    
+    function calcDiscount(){
+        
+    /*
+    
+    When the discount rate (between 2% and 10%) is entered, the discount amount should be displayed automatically in the correct box.
+    The inputs should be properly validated.
+    
+    */		
+    
+        function validatecalcDiscount(discount){
+            if(isNaN(discount)){
+                alert("Discount cannot be null");
+                return false;
+            } else if(discount<=0){
+                alert("Please enter discount rate 2% - 10%");
+                return false;
+            } else if(discount>10){
+                alert("Please enter discount rate 2% - 10%");
+                return false;
+            } else if(discount<2){
+                alert("Please enter discount rate 2% - 10%");
+                return false;
+            } else {
+                return true;
+            }
+        }
+    
+        var discount = document.getElementsByName("discountRate")[0].value;
+        var subtotal = document.getElementsByName("subtotal")[0].value;
+    
+        if (validatecalcDiscount(discount))
+        {
+        var disc = subtotal * (1- (discount / 100));
+        document.getElementsByName("discountAmount")[0].value = subtotal * (discount / 100);
+        document.getElementsByName("discount")[0].value = disc; 
+        }
+    
+    }
+    
+    function calcBalance(){
+    
+    /*
+    
+    When the cash given by the customer is entered, the balance should be displayed automatically in the correct box.
+    The inputs should be properly validated.
+    
+    */	
+    
+        function validatecalcBalance(balance){
+            if(isNaN(balance)){
+                alert("Cash cannot be null");
+                return false;
+            } else if(balance<=0){
+                alert("Please enter a valid cash given by the customer (>0)");
+                return false;
+            } else {
+                return true;
+            }
+        }
+    
+        var cash = document.getElementsByName("cash")[0].value;
+        var discount = document.getElementsByName("discount")[0].value;
+    
+        if (validatecalcBalance(cash))
+        {
+        var bal = cash - discount;
+        document.getElementsByName("balance")[0].value = bal;
+        }
+        
+    }
+    
+    </script>
